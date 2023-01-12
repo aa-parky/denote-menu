@@ -208,13 +208,11 @@ When called from Lisp, KEYWORDS is a list of strings."
   (denote-menu-update-entries)
   (setq tabulated-list-sort-key '("Date" . t))
   (tabulated-list-init-header)
-  (tabulated-list-print))
-
-;; trying to add subdirectories
-(defun my/subdirectories ()
-  (interactive)
-  (setq denote-directory "~/Developer/capsule-tilde-pi")
-  (denote-menu-update-entries))
+  (tabulated-list-print)
+  ;; print the current value of denote-directory to the mode-line and update
+  (setq mode-line-format (format "Current denote-directory is: %s" denote-directory))
+  (force-mode-line-update)
+  )
 
 (provide 'denote-menu)
 ;;; denote-menu.el ends here
