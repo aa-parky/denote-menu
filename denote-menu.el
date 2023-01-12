@@ -66,6 +66,7 @@ denote file corresponding to the button."
 ;;;###autoload
 (defun denote-menu-list-notes ()
   "Display list of Denote files in variable `denote-directory'."
+
   (interactive)
   (let ((buffer (get-buffer-create "*Denote*")))
     (with-current-buffer buffer
@@ -208,6 +209,12 @@ When called from Lisp, KEYWORDS is a list of strings."
   (setq tabulated-list-sort-key '("Date" . t))
   (tabulated-list-init-header)
   (tabulated-list-print))
+
+;; trying to add subdirectories
+(defun my/subdirectories ()
+  (interactive)
+  (setq denote-directory "~/Developer/capsule-tilde-pi")
+  (denote-menu-update-entries))
 
 (provide 'denote-menu)
 ;;; denote-menu.el ends here
