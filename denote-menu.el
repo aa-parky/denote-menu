@@ -31,18 +31,18 @@
   "View Denote files"
   :group 'files)
 
-(defcustom denote-menu-date-column-width 17
+(defcustom denote-menu-date-column-width 20
   "Width for the date column."
   :type 'number
   :group 'denote-menu)
 
-(defcustom denote-menu-title-column-width 85
+(defcustom denote-menu-title-column-width 45
   "Width for the title column."
   :type 'number
   :group 'denote-menu)
 
 
-(defcustom denote-menu-keywords-column-width 30
+(defcustom denote-menu-keywords-column-width 50
   "Width for the keywords column."
   :type 'number
   :group 'denote-menu)
