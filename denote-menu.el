@@ -216,6 +216,7 @@ When called from Lisp, KEYWORDS is a list of strings."
 ;; the following function allows the user to change the value of denote-directory this is helpful if you are using silos and want to use denote-menu. It also sends the current denote-directory value to the mode-line.
 
 (defun denote-switch-denote-directory ()
+"Switch the value 0f denote-directory"
   (interactive)
   (let ((new-directory (read-directory-name "Change denote-directory to: ")))
     (setq denote-directory new-directory)
