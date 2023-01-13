@@ -209,7 +209,7 @@ When called from Lisp, KEYWORDS is a list of strings."
   (tabulated-list-init-header)
   (tabulated-list-print)
   ;; print the current value of denote-directory to the mode-line and update
-  (add-to-list 'mode-line-format (format "denote-directory: %s" denote-directory))
+  (add-to-list 'mode-line-format '(:eval(format "denote-directory: %s" denote-directory)))
     (force-mode-line-update)
   )
 
@@ -221,8 +221,8 @@ When called from Lisp, KEYWORDS is a list of strings."
   (let ((new-directory (read-directory-name "Change denote-directory to: ")))
     (setq denote-directory new-directory)
     (message "Changed denote-directory to: %s" new-directory)
-    ;;(setq mode-line-format (format "Current denote-directory is: %s" new-directory))
-    (force-mode-line-update))
+    (force-mode-line-update)
+    )
   ;; updates buffer
   (revert-buffer t t)
   )
