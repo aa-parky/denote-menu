@@ -31,22 +31,21 @@
   "View Denote files"
   :group 'files)
 
-(defcustom denote-menu-date-column-width 20
+(defcustom denote-menu-date-column-width 17
   "Width for the date column."
   :type 'number
   :group 'denote-menu)
 
-(defcustom denote-menu-title-column-width 45
+(defcustom denote-menu-title-column-width 50
   "Width for the title column."
   :type 'number
   :group 'denote-menu)
 
 
-(defcustom denote-menu-keywords-column-width 50
+(defcustom denote-menu-keywords-column-width 30
   "Width for the keywords column."
   :type 'number
   :group 'denote-menu)
-
 
 (defcustom denote-menu-action (lambda (path) (find-file path))
   "Function to execute when a denote file button action is
@@ -210,8 +209,21 @@ When called from Lisp, KEYWORDS is a list of strings."
   (tabulated-list-init-header)
   (tabulated-list-print)
   ;; print the current value of denote-directory to the mode-line and update
-  (setq mode-line-format (format "Current denote-directory is: %s" denote-directory))
-  (force-mode-line-update)
+  (add-to-list 'mode-line-format (format "denote-directory: %s" denote-directory))
+    (force-mode-line-update)
+  )
+
+;; the following function allows the user to change the value of denote-directory this is helpful if you are using silos and want to use denote-menu. It also sends the current denote-directory value to the mode-line.
+
+(defun denote-switch-denote-directory ()
+  (interactive)
+  (let ((new-directory (read-directory-name "Change denote-directory to: ")))
+    (setq denote-directory new-directory)
+    (message "Changed denote-directory to: %s" new-directory)
+    ;;(setq mode-line-format (format "Current denote-directory is: %s" new-directory))
+    (force-mode-line-update))
+  ;; updates buffer
+  (revert-buffer t t)
   )
 
 (provide 'denote-menu)
